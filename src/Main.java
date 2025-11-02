@@ -10,8 +10,8 @@ public class Main {
 //            Mass newObject = new Mass(Math.random() * 50, Math.random() * 50, Math.random());
 //            objects.add(newObject);
 //        }
-        objects.add(new Mass(0, 15, 0.001, 1.5));
-        objects.add(new Mass(40, 30, 100, 1.5));
+        objects.add(new Mass(10, 20, 0.01, 1.5));
+        objects.add(new Mass(50, 35, 100, 1.5));
         objects.get(0).setXVel(2);
         objects.get(0).setYVel(-2);
 //        objects.get(1).setXVel(-0.5);
