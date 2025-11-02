@@ -3,11 +3,13 @@ public class Mass {
     private double xVel, yVel;
     private double xAcc, yAcc;
     private double mass;
+    private double radius;
 
-    public Mass(double x, double y, double mass) {
+    public Mass(double x, double y, double mass, double radius) {
         this.x = x;
         this.y = y;
         this.mass = mass;
+        this.radius = radius;
         xVel = 0;
         yVel = 0;
         xAcc = 0;
@@ -17,6 +19,7 @@ public class Mass {
         x = 0;
         y = 0;
         mass = 0;
+        radius = 1;
         xVel = 0;
         yVel = 0;
         xAcc = 0;
@@ -63,4 +66,5 @@ public class Mass {
     public double getMass() {
         return mass;
     }
+    public double getRadius() { return radius; }
 }

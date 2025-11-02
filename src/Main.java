@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String args[]) {
-        int cellSize = 10;
+        int cellSize = 8;
         int fps = 12;
 
         ArrayList<Mass> objects = new ArrayList<>();
@@ -10,8 +10,11 @@ public class Main {
 //            Mass newObject = new Mass(Math.random() * 50, Math.random() * 50, Math.random());
 //            objects.add(newObject);
 //        }
-        objects.add(new Mass(20, 25, 1));
-        objects.add(new Mass(30, 25, 1));
+        objects.add(new Mass(0, 15, 0.001, 1.5));
+        objects.add(new Mass(40, 30, 100, 1.5));
+        objects.get(0).setXVel(2);
+        objects.get(0).setYVel(-2);
+//        objects.get(1).setXVel(-0.5);
 
         Field field = new Field(objects);
         Display display = new Display(cellSize, fps, field);

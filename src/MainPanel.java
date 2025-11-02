@@ -10,7 +10,7 @@ public class MainPanel extends JPanel {
         this.cellSize = cellSize;
         this.fps = fps;
 
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(700, 700));
         setBackground(new Color(255, 230, 230));
     }
 
@@ -25,7 +25,7 @@ public class MainPanel extends JPanel {
         g.setColor(Color.red);
 
         for (Mass mass : field.getObjects()) {
-            g.fillArc((int) (mass.getX() * cellSize), (int) (mass.getY() * cellSize), (int) (cellSize * mass.getMass()), (int) (cellSize * mass.getMass()), 0, 360);
+            g.fillArc((int) ((mass.getX() - mass.getRadius()) * cellSize), (int) ((mass.getY() - mass.getRadius()) * cellSize), (int) (cellSize * mass.getRadius()), (int) (cellSize * mass.getRadius()), 0, 360);
         }
     }
 }

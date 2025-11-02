@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Field {
     ArrayList<Mass> objects = new ArrayList<>();
-    final double G = 1;
+    final double G = 6.67;
 
     public Field(ArrayList<Mass> objects) {
         this.objects = objects;
