@@ -19,6 +19,7 @@ public class Display extends JFrame implements ActionListener {
 
         add(mainPanel);
         timer.setActionCommand("timer");
+        timer.start();
 
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
