@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
 public class Field {
-    ArrayList<Mass> objects = new ArrayList<>();
-    final double G = 6.67;
+    private ArrayList<Mass> objects = new ArrayList<>();
+    private final double G = 6.67;
+    private double step;
 
     public Field(ArrayList<Mass> objects) {
         this.objects = objects;
+        step = 0.1;
     }
 
     public void addObject(Mass mass) {
@@ -16,8 +18,22 @@ public class Field {
         return objects;
     }
 
+    public void setStep(double step) {
+        this.step = step;
+    }
+
+    public double getStep() {
+        return step;
+    }
+
     public void update() {
-        ArrayList<Mass> newObjects = new ArrayList<>();
+        for (Mass obj : objects) {
+            obj.setXVel(obj.getXVel() + obj.getXAcc() * step);
+            obj.setYVel(obj.getYVel() + obj.getYAcc() * step);
+            obj.setX(obj.getX() + obj.getXVel() * step);
+            obj.setY(obj.getY() + obj.getYVel() * step);
+        }
+
         for (Mass obj : objects) {
             double accX, accY;
             accX = 0;
@@ -39,14 +55,6 @@ public class Field {
             System.out.println(objects.indexOf(obj) + ": accX = " + accX + ", accY = " + accY);
             obj.setXAcc(accX);
             obj.setYAcc(accY);
-        }
-        System.out.println();
-
-        for (Mass obj : objects) {
-            obj.setXVel(obj.getXVel() + obj.getXAcc());
-            obj.setYVel(obj.getYVel() + obj.getYAcc());
-            obj.setX(obj.getX() + obj.getXVel());
-            obj.setY(obj.getY() + obj.getYVel());
         }
     }
 }

@@ -3,19 +3,14 @@ import java.awt.*;
 
 public class MainPanel extends JPanel {
     Field field;
-    int cellSize, fps;
+    int cellSize;
 
     public MainPanel(int cellSize, int fps, Field field) {
         this.field = field;
         this.cellSize = cellSize;
-        this.fps = fps;
 
         setPreferredSize(new Dimension(700, 700));
-        setBackground(new Color(255, 230, 230));
-    }
-
-    public void updateState() {
-        field.update();
+        setBackground(new Color(255, 200, 200));
     }
 
     @Override

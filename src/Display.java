@@ -6,7 +6,7 @@ public class Display extends JFrame implements ActionListener {
     MainPanel mainPanel;
     int cellSize, fps;
     Field field;
-    Timer timer;
+    Timer frameTimer;
 
     public Display(int cellSize, int fps, Field field) {
         super("Gravity Simulator");
@@ -14,12 +14,12 @@ public class Display extends JFrame implements ActionListener {
         this.cellSize = cellSize;
         this.fps = fps;
         this.field = field;
-        timer = new Timer(1000 / fps, this);
+        frameTimer = new Timer(1000 / fps, this);
         mainPanel = new MainPanel(cellSize, fps, field);
 
         add(mainPanel);
-        timer.setActionCommand("timer");
-        timer.start();
+        frameTimer.setActionCommand("frame");
+        frameTimer.start();
 
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,8 +29,8 @@ public class Display extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("timer")) {
-            mainPanel.updateState();
+        if (e.getActionCommand().equals("frame")) {
+            field.update();
             mainPanel.repaint();
         }
     }
