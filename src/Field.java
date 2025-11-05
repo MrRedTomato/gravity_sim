@@ -34,6 +34,15 @@ public class Field {
             obj.setY(obj.getY() + obj.getYVel() * step);
         }
 
+        /*
+        for (int i = 0; i < objects.size(); i++) {
+            for (int j = i + 1; j < objects.size(); j++) {
+                Calculate force between i and j
+                apply to both i and j
+            }
+        }
+        */
+
         for (Mass obj : objects) {
             double accX, accY;
             accX = 0;

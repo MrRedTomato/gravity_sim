@@ -20,7 +20,14 @@ public class MainPanel extends JPanel {
         g.setColor(Color.red);
 
         for (Mass mass : field.getObjects()) {
-            g.fillArc((int) ((mass.getX() - mass.getRadius()) * cellSize), (int) ((mass.getY() - mass.getRadius()) * cellSize), (int) (cellSize * mass.getRadius()), (int) (cellSize * mass.getRadius()), 0, 360);
+            g.fillArc(
+                (int) ((mass.getX() - mass.getRadius()) * cellSize), 
+                (int) ((mass.getY() - mass.getRadius()) * cellSize), 
+                (int) (cellSize * mass.getRadius()), 
+                (int) (cellSize * mass.getRadius()), 
+                0, 
+                360
+            );
         }
     }
 }
