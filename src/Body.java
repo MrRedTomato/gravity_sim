@@ -31,7 +31,7 @@ public class Body {
             if (otherBody != this) {
                 Vector r = otherBody.getPosition().sub(this.getPosition());
 
-                if ((r.getMag() - this.getRadius() - otherBody.getRadius()) <= 0.5) {
+                if ((r.getMag() - this.getRadius() - otherBody.getRadius()) <= 0.1) {
 
                     double m1 = this.getMass();
                     double m2 = otherBody.getMass();
