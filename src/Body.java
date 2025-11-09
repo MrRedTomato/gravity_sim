@@ -6,7 +6,7 @@ public class Body {
     private Vector acceleration;
     private double mass;
     private double radius;
-    private double G = 6.67;
+    private double G = 6.67e1;
 
     public Body(double x, double y, double mass, double radius) {
         position = new Vector(x, y);
@@ -31,7 +31,7 @@ public class Body {
             if (otherBody != this) {
                 Vector r = otherBody.getPosition().sub(this.getPosition());
 
-                if ((r.getMag() - this.getRadius() - otherBody.getRadius()) <= 0.1) {
+                if ((r.getMag() - this.getRadius() - otherBody.getRadius()) <= 0.5) {
 
                     double m1 = this.getMass();
                     double m2 = otherBody.getMass();
@@ -42,9 +42,11 @@ public class Body {
                     this.setVel(thisVel);
                     otherBody.setVel(otherVel);
                 }
-                Vector otherAcc = r.mult(G * otherBody.getMass() / Math.pow(r.getMag(), 3));
+                else {
+                    Vector otherAcc = r.mult(G * otherBody.getMass() / Math.pow(r.getMag(), 3));
 
-                newAcc = newAcc.add(otherAcc);
+                    newAcc = newAcc.add(otherAcc);
+                }
             }
         }
         this.setAcc(newAcc);

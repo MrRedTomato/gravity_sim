@@ -1,17 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends JPanel implements MouseListener, MouseMotionListener {
     int cellSize;
     double dt;
+    double x, y, clickX, clickY;
     ArrayList<Body> bodies;
 
     public MainPanel(int cellSize, double dt, ArrayList<Body> bodies) {
         this.cellSize = cellSize;
         this.dt = dt;
         this.bodies = bodies;
+        x = 0;
+        y = 0;
 
+        addMouseListener(this);
+        addMouseMotionListener(this);
         setPreferredSize(new Dimension(700, 700));
         setBackground(new Color(255, 200, 200));
     }
@@ -30,13 +38,46 @@ public class MainPanel extends JPanel {
 
         for (Body body : bodies) {
             g.fillArc(
-                (int) ((body.getPosition().getX() - body.getRadius()) * cellSize),
-                (int) ((body.getPosition().getY() - body.getRadius()) * cellSize),
+                (int) ((body.getPosition().getX() - body.getRadius()) * cellSize + x),
+                (int) ((body.getPosition().getY() - body.getRadius()) * cellSize + y),
                 (int) (cellSize * body.getRadius() * 2),
                 (int) (cellSize * body.getRadius() * 2),
                 0,
                 360
             );
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        clickX = e.getX() - x;
+        clickY = e.getY() - y;
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        x = e.getX() - clickX;
+        y = e.getY() - clickY;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 }
