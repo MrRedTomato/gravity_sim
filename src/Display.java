@@ -1,10 +1,12 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Display extends JFrame implements ActionListener {
     MainPanel mainPanel;
+    ButtonPanel buttonPanel;
     int cellSize, fps;
     double dt;
     Timer frameTimer;
@@ -19,8 +21,10 @@ public class Display extends JFrame implements ActionListener {
         this.bodies = bodies;
         frameTimer = new Timer(1000 / fps, this);
         mainPanel = new MainPanel(cellSize, dt, bodies);
+        ButtonPanel buttonPanel = new ButtonPanel();
 
         add(mainPanel);
+        add(buttonPanel, BorderLayout.SOUTH);
         frameTimer.setActionCommand("frame");
         frameTimer.start();
 
