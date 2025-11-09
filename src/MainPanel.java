@@ -1,16 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MainPanel extends JPanel {
-    Field field;
     int cellSize;
+    double dt;
+    ArrayList<Body> bodies;
 
-    public MainPanel(int cellSize, int fps, Field field) {
-        this.field = field;
+    public MainPanel(int cellSize, double dt, ArrayList<Body> bodies) {
         this.cellSize = cellSize;
+        this.dt = dt;
+        this.bodies = bodies;
 
         setPreferredSize(new Dimension(700, 700));
         setBackground(new Color(255, 200, 200));
+    }
+
+    public void update() {
+        for (int i = 0; i < bodies.size(); i++) {
+            bodies.get(i).update(bodies, dt);
+        }
     }
 
     @Override
@@ -19,13 +28,13 @@ public class MainPanel extends JPanel {
 
         g.setColor(Color.red);
 
-        for (Mass mass : field.getObjects()) {
+        for (Body body : bodies) {
             g.fillArc(
-                (int) ((mass.getX() - mass.getRadius()) * cellSize), 
-                (int) ((mass.getY() - mass.getRadius()) * cellSize), 
-                (int) (cellSize * mass.getRadius()), 
-                (int) (cellSize * mass.getRadius()), 
-                0, 
+                (int) ((body.getPosition().getX() - body.getRadius()) * cellSize),
+                (int) ((body.getPosition().getY() - body.getRadius()) * cellSize),
+                (int) (cellSize * body.getRadius() * 2),
+                (int) (cellSize * body.getRadius() * 2),
+                0,
                 360
             );
         }
