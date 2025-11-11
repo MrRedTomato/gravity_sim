@@ -70,6 +70,9 @@ public class Body {
     public void setRadius(double radius) {
         this.radius = radius;
     }
+    public void setMass(double mass) {
+        this.mass = mass;
+    }
     public Vector getVel() {
         return new Vector(velocity.getX(), velocity.getY());
     }

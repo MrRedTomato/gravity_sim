@@ -69,13 +69,13 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         yInit = e.getY();
         newBody.setPosition(new Vector(clickX / cellSize, clickY / cellSize));
         newBody.setRadius(1);
+        newBody.setMass(1);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         if (addPlanet) {
             newBody.setVel(new Vector((e.getX() - xInit) / cellSize, (e.getY() - yInit) / cellSize));
-            System.out.println(newBody.getVel());
         }
         else {
             x = e.getX() - clickX;
