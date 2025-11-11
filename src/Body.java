@@ -67,6 +67,9 @@ public class Body {
     public void setAcc(Vector acceleration) {
         this.acceleration = new Vector(acceleration);
     }
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
     public Vector getVel() {
         return new Vector(velocity.getX(), velocity.getY());
     }

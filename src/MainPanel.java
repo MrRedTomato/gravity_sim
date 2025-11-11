@@ -6,17 +6,27 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class MainPanel extends JPanel implements MouseListener, MouseMotionListener {
-    int cellSize;
-    double dt;
-    double x, y, clickX, clickY;
-    ArrayList<Body> bodies;
+    private int cellSize;
+    private double dt;
+    private double x, y, clickX, clickY, xInit, yInit;
+    private boolean addPlanet;
+    private boolean hasBody;
+    private Body newBody;
+    private ArrayList<Body> bodies;
 
     public MainPanel(int cellSize, double dt, ArrayList<Body> bodies) {
         this.cellSize = cellSize;
         this.dt = dt;
         this.bodies = bodies;
+        addPlanet = false;
+        hasBody = false;
+        newBody = new Body(0, 0, 0, 0);
         x = 0;
         y = 0;
+        clickX = 0;
+        clickY = 0;
+        xInit = 0;
+        yInit = 0;
 
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -28,6 +38,9 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         for (int i = 0; i < bodies.size(); i++) {
             bodies.get(i).update(bodies, dt);
         }
+    }
+    public void setAddPlanet(boolean addPlanet) {
+        this.addPlanet = addPlanet;
     }
 
     @Override
@@ -52,12 +65,22 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
         clickX = e.getX() - x;
         clickY = e.getY() - y;
+        xInit = e.getX();
+        yInit = e.getY();
+        newBody.setPosition(new Vector(clickX / cellSize, clickY / cellSize));
+        newBody.setRadius(1);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        x = e.getX() - clickX;
-        y = e.getY() - clickY;
+        if (addPlanet) {
+            newBody.setVel(new Vector((e.getX() - xInit) / cellSize, (e.getY() - yInit) / cellSize));
+            System.out.println(newBody.getVel());
+        }
+        else {
+            x = e.getX() - clickX;
+            y = e.getY() - clickY;
+        }
     }
 
     @Override
@@ -66,7 +89,11 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if (addPlanet) {
+            bodies.add(newBody);
+            newBody = new Body(0, 0, 0, 0);
+            addPlanet = false;
+        }
     }
     @Override
     public void mouseEntered(MouseEvent e) {

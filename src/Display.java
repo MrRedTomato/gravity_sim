@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Display extends JFrame implements ActionListener {
     MainPanel mainPanel;
     ButtonPanel buttonPanel;
+    PlanetPanel planetPanel;
     int cellSize, fps;
     double dt;
     Timer frameTimer;
@@ -24,7 +25,8 @@ public class Display extends JFrame implements ActionListener {
         this.bodies = bodies;
         frameTimer = new Timer(1000 / fps, this);
         mainPanel = new MainPanel(cellSize, dt, bodies);
-        ButtonPanel buttonPanel = new ButtonPanel();
+        buttonPanel = new ButtonPanel();
+        planetPanel = new PlanetPanel();
 
         play.addActionListener(this);
         pause.addActionListener(this);
@@ -36,6 +38,7 @@ public class Display extends JFrame implements ActionListener {
 
         add(mainPanel);
         add(buttonPanel, BorderLayout.SOUTH);
+        add(planetPanel, BorderLayout.NORTH);
         frameTimer.setActionCommand("frame");
         frameTimer.start();
 
@@ -48,6 +51,10 @@ public class Display extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("frame")) {
+            if (planetPanel.shouldAddPlanet()) {
+                mainPanel.setAddPlanet(true);
+                planetPanel.addedPlanet();
+            }
             mainPanel.update();
             mainPanel.repaint();
         }
@@ -56,6 +63,10 @@ public class Display extends JFrame implements ActionListener {
         }
         if (e.getActionCommand().equals("▶")) {
             frameTimer.start();
+        }
+        if (e.getActionCommand().equals("|▶")) {
+            mainPanel.update();
+            mainPanel.repaint();
         }
     }
 }
