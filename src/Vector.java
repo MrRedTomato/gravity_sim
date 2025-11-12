@@ -34,6 +34,9 @@ public class Vector {
     public Vector mult(double scalar) {
         return new Vector(x * scalar, y * scalar);
     }
+    public Vector getUnit() {
+        return new Vector(this.div(this.getMag()));
+    }
     public Vector div(double scalar) {
         return new Vector(x / scalar, y / scalar);
     }

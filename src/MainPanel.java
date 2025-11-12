@@ -20,7 +20,7 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         this.bodies = bodies;
         addPlanet = false;
         hasBody = false;
-        newBody = new Body(0, 0, 0, 0);
+        newBody = new Body(0, 0, 0, 0, dt);
         x = 0;
         y = 0;
         clickX = 0;
@@ -36,7 +36,7 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
 
     public void update() {
         for (int i = 0; i < bodies.size(); i++) {
-            bodies.get(i).update(bodies, dt);
+            bodies.get(i).update(bodies);
         }
     }
     public void setAddPlanet(boolean addPlanet) {
@@ -91,7 +91,7 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     public void mouseReleased(MouseEvent e) {
         if (addPlanet) {
             bodies.add(newBody);
-            newBody = new Body(0, 0, 0, 0);
+            newBody = new Body(0, 0, 0, 0, dt);
             addPlanet = false;
         }
     }

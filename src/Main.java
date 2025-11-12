@@ -9,7 +9,11 @@ public class Main {
         // Store the celestial bodies in an array
         ArrayList<Body> bodies = new ArrayList<>();
 
-        //bodies.add(new Body(70, 70, 10000, 2));
+        bodies.add(new Body(70, 70, 10, 10, dt));
+        bodies.add(new Body(10, 70, 5, 5, dt));
+
+        bodies.get(0).setVel(new Vector(5, 0));
+        bodies.get(1).setVel(new Vector(40, 0));
 
         // Create a display, pass in necessary arguments
         // as well as the array of celestial bodies
