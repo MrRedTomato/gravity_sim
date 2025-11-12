@@ -10,7 +10,6 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     private double dt;
     private double x, y, clickX, clickY, xInit, yInit;
     private boolean addPlanet;
-    private boolean hasBody;
     private Body newBody;
     private ArrayList<Body> bodies;
 
@@ -19,7 +18,6 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         this.dt = dt;
         this.bodies = bodies;
         addPlanet = false;
-        hasBody = false;
         newBody = new Body(0, 0, 0, 0, dt);
         x = 0;
         y = 0;

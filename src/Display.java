@@ -15,6 +15,7 @@ public class Display extends JFrame implements ActionListener {
     JButton stepButton = new JButton("|▶");
     JButton pause = new JButton("||");
     JButton play = new JButton("▶");
+    JButton reset = new JButton("↺");
 
     public Display(int cellSize, int fps, double dt, ArrayList<Body> bodies) {
         super("Gravity Simulator");
@@ -31,10 +32,12 @@ public class Display extends JFrame implements ActionListener {
         play.addActionListener(this);
         pause.addActionListener(this);
         stepButton.addActionListener(this);
+        reset.addActionListener(this);
 
         buttonPanel.add(play);
         buttonPanel.add(pause);
         buttonPanel.add(stepButton);
+        buttonPanel.add(reset);
 
         add(mainPanel);
         add(buttonPanel, BorderLayout.SOUTH);
@@ -67,6 +70,9 @@ public class Display extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("|▶")) {
             mainPanel.update();
             mainPanel.repaint();
+        }
+        if (e.getActionCommand().equals("↺")) {
+            bodies.clear();
         }
     }
 }
