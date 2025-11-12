@@ -56,7 +56,7 @@ public class Body {
 
 
                     Vector thisVel = new Vector(this.getVel().sub(this.getPosition().sub(otherBody.getPosition()).mult((2 * m2) / (m1 + m2) * this.getVel().sub(otherBody.getVel()).dot(this.getPosition().sub(otherBody.getPosition())) / Math.pow(this.getPosition().sub(otherBody.getPosition()).getMag(), 2))));
-                    Vector otherVel = new Vector(otherBody.getVel().sub(otherBody.getPosition().sub(this.getPosition()).mult((2 * m2) / (m1 + m2) * otherBody.getVel().sub(this.getVel()).dot(otherBody.getPosition().sub(this.getPosition())) / Math.pow(otherBody.getPosition().sub(this.getPosition()).getMag(), 2))));
+                    Vector otherVel = new Vector(otherBody.getVel().sub(otherBody.getPosition().sub(this.getPosition()).mult((2 * m1) / (m1 + m2) * otherBody.getVel().sub(this.getVel()).dot(otherBody.getPosition().sub(this.getPosition())) / Math.pow(otherBody.getPosition().sub(this.getPosition()).getMag(), 2))));
 
                     this.setVel(thisVel);
                     otherBody.setVel(otherVel);
