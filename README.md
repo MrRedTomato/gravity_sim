@@ -14,7 +14,7 @@ Now, navigate to the zip file and right-click it. Select 'extract all' and selec
 Hit the Start menu and start typing 'cmd'. The 'Command Prompt' app should show up.
 Run the command prompt app, then navigate to the directory with the downloaded files using the command:
 ```bash
-  cd <"director name">/src
+  cd <"director name">\src
 ```
 (Don't include the triangle brackets!)
 Next, run the following commands:
@@ -27,7 +27,7 @@ Next, run the following commands:
 Navigate to Applications/Utilities/Terminal.app to run the Terminal app.
 Next, navigate to the folder where all the code is using the command:
 ```bash
-  cd <"directory name">/src
+  cd <"directory name">\src
 ```
 (Don't include triangle brackets!)
 Next, run the following commands:
