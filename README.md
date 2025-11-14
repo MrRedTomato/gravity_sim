@@ -17,6 +17,7 @@ Run the command prompt app, then navigate to the directory with the downloaded f
   cd <"director name">\src
 ```
 (Don't include the triangle brackets!)
+Your Command Prompt app should now be in the same folder as the .java files.
 Next, run the following commands:
 ```bash
   javac *.java
