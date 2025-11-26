@@ -10,9 +10,9 @@ public class Main {
         ArrayList<Body> bodies = new ArrayList<>();
 
         bodies.add(new Body(70, 70, 100, 10, dt));
-        bodies.add(new Body(10, 60, 50, 5, dt));
+        bodies.add(new Body(10, 55, 50, 5, dt));
 
-        bodies.get(0).setVel(new Vector(5, 0));
+        bodies.get(0).setVel(new Vector(0, 0));
         bodies.get(1).setVel(new Vector(40, 0));
 
         // Create a display, pass in necessary arguments

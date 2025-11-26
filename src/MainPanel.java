@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +13,8 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     private double x, y, clickX, clickY, xInit, yInit;
     private boolean addPlanet;
     private Body newBody;
+    double newBodyMass;
+    double newBodyRadius;
     private ArrayList<Body> bodies;
 
     public MainPanel(int cellSize, double dt, ArrayList<Body> bodies) {
@@ -18,7 +22,10 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         this.dt = dt;
         this.bodies = bodies;
         addPlanet = false;
+        newBodyMass = 0;
+        newBodyRadius = 0;
         newBody = new Body(0, 0, 0, 0, dt);
+
         x = 0;
         y = 0;
         clickX = 0;
@@ -36,6 +43,12 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         for (int i = 0; i < bodies.size(); i++) {
             bodies.get(i).update(bodies);
         }
+    }
+    public void setNewBodyMass(double mass) {
+        newBodyMass = mass;
+    }
+    public void setNewBodyRadius(double radius) {
+        newBodyRadius = radius;
     }
     public void setAddPlanet(boolean addPlanet) {
         this.addPlanet = addPlanet;
@@ -66,8 +79,8 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
         xInit = e.getX();
         yInit = e.getY();
         newBody.setPosition(new Vector(clickX / cellSize, clickY / cellSize));
-        newBody.setRadius(1);
-        newBody.setMass(1);
+        newBody.setRadius(newBodyRadius);
+        newBody.setMass(newBodyMass);
     }
 
     @Override
@@ -82,17 +95,16 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-    @Override
     public void mouseReleased(MouseEvent e) {
         if (addPlanet) {
             bodies.add(newBody);
-            newBody = new Body(0, 0, 0, 0, dt);
+            newBody = new Body(0, 0, newBodyMass, newBodyRadius, dt);
             addPlanet = false;
         }
     }
+
+
+
     @Override
     public void mouseEntered(MouseEvent e) {
 
@@ -103,6 +115,10 @@ public class MainPanel extends JPanel implements MouseListener, MouseMotionListe
     }
     @Override
     public void mouseMoved(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
 
     }
 }

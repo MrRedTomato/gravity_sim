@@ -55,6 +55,8 @@ public class Display extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("frame")) {
             if (planetPanel.shouldAddPlanet()) {
+                mainPanel.setNewBodyMass(planetPanel.getNewBodyMass());
+                mainPanel.setNewBodyRadius(planetPanel.getNewBodyRadius());
                 mainPanel.setAddPlanet(true);
                 planetPanel.addedPlanet();
             }
